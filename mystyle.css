@@ -1,0 +1,196 @@
+/** 													 **/
+/** Some Custom design options **/
+/** 													 **/
+
+#sam {
+	font-size: 30px;
+	color: #f2f2f2;
+  display: inline-block;
+}
+
+#description {
+	margin: 45px;
+	margin-top: 50px;
+}
+
+#face {
+	border-radius: 50%;
+	margin-top: 60px;
+	margin-bottom: 70px;
+	width: 175px;
+	height: 182px;
+}	
+
+.desc-container {
+	padding-top: 8%;
+	padding-bottom: 3%;
+	font-family: "open sans";
+	font-size: 18px;
+}
+
+.me-description {
+	width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 1%;
+	padding-right: 5%;
+	padding-left: 5%;
+}
+
+.center-me {
+	text-align: center;
+}
+
+.boxed {
+	border: 2px solid #BAC8C9;
+	border-radius: 10px 10px;
+	padding-bottom: -60px;
+}
+
+.face-bg {
+	background-image: url("resources/new.jpg");
+}
+
+.move-up-little {
+	margin-top: -20px;
+}
+
+.initial-top {
+	margin-top: 100px;
+}
+
+body {
+
+	/*background-image: url("https://i.imgsafe.org/6ef28b0.png");*/
+
+	background-color: #fff;
+}
+
+.footer {
+	position: absolute;
+	margin-bottom: 0;
+	margin-right: 0;
+	margin-left: 0;
+	padding: 1rem;
+}
+
+/** 																 **/
+/** override some css from bootstrap **/
+/** 																 **/
+
+
+ul {
+	margin-right: 15% !important; 	/** actually for the nav bar **/
+	margin-left: 15% !important; 		/** actually for the nav bar **/
+}
+
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+
+h1 {
+	font-family: 'Open Sans Condensed';
+	font-weight: bold;
+}
+
+.thumbnail img {
+	padding-right: 13%;
+	padding-left: 13%; 
+	padding-top: 13%; 
+	padding-bottom: 5px;
+}
+
+.navbar {
+	border-style: none;
+	background-color: #075786;
+	border-radius: 0;
+
+	margin: 0;
+
+	padding-top: 3.5%;
+	padding-bottom: 3.5%;
+	font-weight: bold;
+}
+
+.nav a {
+	color: #f2f2f2 !important;
+  -webkit-transition: color .3s;
+  -moz-transition: color .3s;
+
+}
+
+.nav a:hover { 
+	color: #FFC67A !important; 
+}
+
+.no_active a{
+	text-decoration: none;
+}
+
+.jumbotron {
+	background-color: #001476;
+	text-align: center;
+	padding-top: 13%;
+	padding-bottom: 13%;
+	margin: 0;
+}
+
+.btn-lg {
+	background-color: white;
+  -webkit-transition: color .5s;
+  -moz-transition: color .5s;
+	font-family: 'anton';
+	margin: 7px;
+	margin-top: 10px;
+}
+
+.btn-lg:hover {
+	color: #DF0446;
+}
+
+.jumbo-btns a:link {
+	color: #1F5DBA;
+	text-decoration: none;
+	padding: 4px;
+}
+
+.grow {
+	transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+	transform: scale(1.1);
+}
+
+.thumbnail {
+	transition: all .2s ease-in-out;
+}
+
+.thumbnail:hover {
+	transform: scale(1.03);
+	border-color: #999;
+}
+
+.form-control {
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.row-margin-bottom {
+	margin-bottom: 1%;
+}
+
+.simplebox {
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+

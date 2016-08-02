@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>	
+	<link rel="stylesheet" type="text/css" href="mystyle.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <meta charset="utf-8">
+
+  <title>Random Quote Generator</title>
+
+<script>
+
+  // get the quote from the quote api
+	function getQuote() { 
+	 var output = $.ajax({
+	    url: 'https://andruxnet-random-famous-quotes.p.mashape.com/?cat=movies', // The URL to the API
+	    type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
+	    data: {}, // Additional parameters here
+	    dataType: 'json',
+	    success: function(data) {
+	        // console.log(data);
+        	$("#quote").fadeOut(function() {
+		        $("#quote").html(data.quote);
+		        $("#quote").append("<br><br> - " + data.author);
+	        	$("#quote").fadeIn(1000);
+        	});
+	        },
+	    error: function(err) { alert(err); },
+	    beforeSend: function(xhr) {
+	    xhr.setRequestHeader("X-Mashape-Authorization", "bFL01hCK3umshwlp9w9n3x3KZuaOp1upC2FjsnFLzoI4JzY1W2"); // Mashape key
+	    }
+		});
+	}
+
+$(document).ready(function() {
+	$("#twitter-button").on('click', function() {
+
+		var quote = $("#quote").html();
+		console.log(quote);
+
+		window.open("https://twitter.com/intent/tweet?text=" + quote.replace("<br><br>", "%0A%0A"));
+	});	
+
+});
+
+</script>
+
+</head>
+<body>
+
+	<div class="container">
+		<br><br>
+
+		<div class="text-center">
+			<img src="https://i.imgsafe.org/41b9c08.png">;
+		  <blockquote id="quote">
+		  Push the button to generate a quote!
+		  </blockquote>
+		  <br>
+		  <button id="change-quote" text="hello%world" class="btn btn-primary btn-lg" onclick="getQuote()">Generate Quote</button>
+			<button id="twitter-button" class="btn btn-info btn-lg">Tweet</button>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+body {
+	color: black;
+	font-family: Helvetica;
+	font-size: 20px;
+
+	/* a list of the urls used for the backgrounds */
+  /*background-image: url(http://i.imgur.com/lQ0JR6s.jpg);	clear-skies-day*/
+  /*background-image: url(http://i.imgur.com/bqavUXI.jpg);	clear-skies-night*/
+  /*background-image: url(http://i.imgur.com/tpgCLYt.png);	few-clouds-day*/
+  /*background-image: url(http://i.imgur.com/51uLEFc.png);	few-clouds-night*/
+  /*background-image: url(http://i.imgur.com/Z4LVSuc.jpg);	mist-day*/
+  /*background-image: url(http://i.imgur.com/LF70Zh0.jpg);	mist-night*/
+  /*background-image: url(http://i.imgur.com/C5JA1kO.jpg);	rain*/
+  /*background-image: url(http://i.imgur.com/EnYTlFe.jpg);	scattered-clouds-day*/
+  /*background-image: url(http://i.imgur.com/jEiuA86.jpg);	scattered-clouds-night*/
+  /*background-image: url(http://i.imgur.com/4vXW95m.jpg);	shower*/
+  /*background-image: url(http://i.imgur.com/ReXwjDm.jpg);	snow-day*/
+  /*background-image: url(http://i.imgur.com/cFBmCrc.jpg);	snow-night*/
+  /*background-image: url(http://i.imgur.com/9ps5KxZ.jpg);  thunderstorm*/
+}
+
+#text {
+	margin-top: 35px;
+}
+
+#author {
+	font-size: 14px;
+}
+
+.container {
+	border: solid 5px black;
+	border-radius: 20%;
+	margin: auto;
+	margin-top: 100px;
+	width: 55%;
+	background-color: white;
+	opacity: .9;
+}
+
+.inside-container {
+	opacity: 1;
+}
+
+button {
+	border: none;
+	background-color: white;
+	font-size: 20px;
+  cursor: pointer;
+}
+
+.text-center {
+	text-align: center;
+}
+

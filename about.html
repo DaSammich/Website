@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Samson's Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="mystyle.css">
+    <link href='https://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+      function centerDesc() {
+        if ($(document).width() <= 800) {
+          $(".me-description").css("width","initial");
+        } else if ($(document).width() > 800) {
+          $(".me-description").css("width","800px");
+        }
+      }
+
+      $(document).ready(function() {
+        centerDesc();
+      });
+
+    </script>
+  </head>
+  <body onresize="centerDesc()">
+
+    <!-- add another nav bar over here -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <span id="sam">S A M S O N</span>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html">HOME <span class="sr-only">(current)</span></a></li>
+            <li><a href="#about_id">ABOUT</a></li>
+            <li><a href="index.html">PORTFOLIO</a></li>
+            <li><a href="contact.php">CONTACT</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="face-bg">
+      <div class="container">
+        <div class="center-me">
+          <h1 class="initial-top">ABOUT ME</h1>
+          <img id="face" src="resources/me.jpg">
+          <div class="jumbo-btns">
+            <a href="https://plus.google.com/110115752151301059913">
+              <button id="google_button" class="btn btn-lg grow">Google+</button>
+            </a>
+            <a href="https://github.com/DaSammich">
+              <button id="github_button" class="btn btn-lg grow">Github</button>
+            </a>
+            <a href="https://www.linkedin.com/in/samson-chua-868395b7">
+              <button id="linked_button" class="btn btn-lg grow">LinkedIn</button>
+            </a>
+            <a href="https://codepen.io/samsonchua/">
+              <button id="codepen_button" class="btn btn-lg grow">Codepen</button>
+            </a>
+          </div>
+          <br><br>
+          <br><br>
+        </div>
+      </div>
+    </div>
+    <div class="container me-description">
+      <div class="desc-container">
+        <p>
+          Hello. My name is Samson. I'm a computer science graduate from Sacramento State. I am very interested in Web Development and I am currently learning more about it in the FreeCodeCamp program.
+        </p>
+        <br>
+        <p>
+          My passion is solving problems and learning more about technology. I also have other various hobbies including playing the piano.
+        </p>
+        <br>
+        <p>Some Languages and frameworks that I am familiar with are Java, HTML5, CSS, Javascript, Python, MySQL, Bootstrap 3, JQuery.</p>
+        <br>
+        <p class="center-me">Here is my <a href="https://www.dropbox.com/s/gc5fbbfu4sq4h2x/Copyofgeneric.pdf?dl=0" target="_blank"><b><i>resume</i></b></a>.</p>
+      </div>
+
+      <div class="page-header" id="contact_id">
+        <h1>Connect</h1>
+      </div>	
+
+      <div align="center">
+        <div class="no_active">
+          <a href="https://plus.google.com/110115752151301059913">
+            <img src="https://i.imgsafe.org/a50384f.png">
+          </a>
+          <a href="https://www.facebook.com/samson.chua.3">
+            <img src="https://i.imgsafe.org/a5a5503.png">
+          </a>
+          <a href="https://github.com/DaSammich">
+            <img src="https://i.imgsafe.org/ac723e5.png">
+          </a>
+          <a href="https://www.linkedin.com/in/samson-chua-868395b7">
+            <img src="https://i.imgsafe.org/b5c89d0.png">
+          </a>
+          <div class="no_active">
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+
+  </body>
+</html>
+

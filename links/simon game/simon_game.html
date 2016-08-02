@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="myscripts.js"></script>
+<link rel="stylesheet" type="text/css" href="my_style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src='https://cdn.rawgit.com/admsev/jquery-play-sound/master/jquery.playSound.js'></script>
+	<link href='https://fonts.googleapis.com/css?family=Secular+One' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Fira+Mono:700' rel='stylesheet' type='text/css'>	
+
+<script>
+
+var on = false;
+var strict = false;
+var clickable = true;
+var inputListSmallEnough = true;
+var inputList = [];
+var recordList = [];
+var popIndex = 0;
+var tens = 0;
+var ones = 0;
+
+function center() {
+	var margin_left = ($(document).width() - 472 - 30) / 2;
+	var margin_top = ($(document).height() * .85 - 472) / 2;
+
+	$(".center").css("margin-left", margin_left + "px");
+	$(".center").css("margin-top", margin_top + "px");
+
+	// resize if the window is small enough
+	if ($(document).width() < 600 || $(document).height() < 600) {
+		$("body").css({"-webkit-transform":"scale(.8)","-moz-transform": "scale(.8)","transform":"scale(.8)"});
+	} else {
+		$("body").css({"-webkit-transform":"scale(1)","-moz-transform": "scale(1)","transform":"scale(1)"});
+	}
+}
+
+function equalLists() {
+	var result = true;
+	for (var i = 0; i < recordList.length; i++) {
+		if (recordList[i] != inputList[i]) {
+			result = false;
+			break;
+		}
+	}
+	return result;
+}
+
+function pop() {
+	flashLight(recordList[popIndex]);
+	popIndex = popIndex + 1;
+	if (popIndex == recordList.length) {
+		setTimeout(resetPop, 1000);
+	}
+}
+
+function resetPop() {
+	popIndex = 0;
+	clearInterval(myFunction);
+}
+
+function startGame() {
+
+	// 1. generate random num 0 - 3
+	// 2. add that to a list
+	// 3. play each item according to the number generated
+
+	clickable = false;
+	var num = Math.floor(Math.random() * 4);
+
+	recordList.push(num);
+	myFunction = setInterval(pop, 800);
+
+	setTimeout(makeClickable, recordList.length * 800 + 1000);
+	inputListSmallEnough = true;
+}	
+
+function retryGame() {
+
+	// player gets it wrong and retries again
+	clickable = false;
+
+	myFunction = setInterval(pop, 800);
+
+	setTimeout(makeClickable, recordList.length * 800 + 1000);
+	inputListSmallEnough = true;
+}
+
+function restartGame() {
+
+	// when a player gets it wrong in strict mode
+	clickable = true;
+	inputListSmallEnough = true;
+	inputList = [];
+	recordList = [];
+	popIndex = 0;
+	tens = 0;
+	ones = 0;
+	$("#ones").html(ones);
+	$("#tens").html(tens);
+	startGame();
+}
+
+function endGame() {
+
+	// make sure to reset all variables used in previous game
+	on = false;
+	strict = false;
+	clickable = true;
+	inputListSmallEnough = true;
+	inputList = [];
+	recordList = [];
+	popIndex = 0;
+	tens = 0;
+	ones = 0;
+	$("#ones").html(ones);
+	$("#tens").html(tens);
+	$("#strict").css("background-color", "#cc0000");
+}
+
+function makeClickable() {
+	clickable = true;
+}
+
+function resetLights() {
+	$(".top-right").css("background-color", "#cc0000");
+	$(".top-left").css("background-color", "#cccc00");
+	$(".bottom-right").css("background-color", "#339933");
+	$(".bottom-left").css("background-color", "#0000cc");
+}
+
+function resetRecord() {
+	recordList = [];
+}
+
+function resetInput() {
+	inputList = [];
+}
+
+function flashLight(num) {
+	switch(num) {
+		// top left
+		case 0:
+			// console.log(0);
+			$(".top-left").css("background-color", "#ffff00");
+			$.playSound("https://s3.amazonaws.com/freecodecamp/simonSound1");
+			break;
+		// top right
+		case 1:
+			// console.log(1);
+			$(".top-right").css("background-color", "#ff0000");
+			$.playSound("https://s3.amazonaws.com/freecodecamp/simonSound2");
+			break;
+		// bottom left
+		case 2:
+			// console.log(2);
+			$(".bottom-left").css("background-color", "#0000ff");
+			$.playSound("https://s3.amazonaws.com/freecodecamp/simonSound3");
+			break;
+		// bottom right
+		case 3:
+			// console.log(3);
+			$(".bottom-right").css("background-color", "#40bf40");
+			$.playSound("https://s3.amazonaws.com/freecodecamp/simonSound4");
+			break;
+	}
+	setTimeout(resetLights, 150);
+}
+
+function incrementScore() {
+
+	// restrict the score limit to 99
+	if (!(ones == 9 && tens == 9)) {
+		ones += 1;
+		if (ones >= 10) {
+			tens += 1;
+			ones = 0;
+		}
+	}
+}
+
+function checkList() {
+
+	// console.log("calling checkList()");
+	// console.log("record list " + recordList);
+	// console.log("input list " + inputList);
+	// console.log("record list length " + recordList.length);
+	// console.log("input list length " + inputList.length);
+
+	// check the newly added element to see if it matches
+	if (inputList[inputList.length - 1] == recordList[inputList.length - 1]) {
+
+		// put what happens if the input is correct here
+		// console.log("correct input");
+
+
+	} else {
+
+		// put what happens if the input is incorrect here
+		inputListSmallEnough = false;
+		inputList = [];
+		clickable = false;
+
+		if (strict) {
+			setTimeout(restartGame, 1000);
+		} else {
+			setTimeout(retryGame, 1000);
+		}
+	}
+
+	// note that if retryGame is called, we will not hit this block
+	// To be honest I'm not too sure why...
+
+	if (inputList.length < recordList.length) {
+		console.log("input length < record length");
+	} else {
+		console.log("input length >= record length");
+
+		// turn off user interface & reset some variables
+		inputListSmallEnough = false;
+		inputList = [];
+		clickable = false;
+
+		// process the score
+		incrementScore();
+		$("#ones").html(ones);
+		$("#tens").html(tens);
+		setTimeout(startGame, 1000);
+	}
+}
+
+$(document).ready(function() {
+
+	center();
+
+	$(".top-left").click(function() {
+		if (on && clickable && inputListSmallEnough) {
+			// console.log("top left");
+			flashLight(0);
+			inputList.push(0);
+			checkList();
+		} 
+	});
+	$(".top-right").click(function() {
+		if (on && clickable && inputListSmallEnough) {
+			// console.log("top right");
+			flashLight(1);
+			inputList.push(1);
+			checkList();
+		}
+	});
+	$(".bottom-left").click(function() {
+		if (on && clickable && inputListSmallEnough) {
+			// console.log("bottom left");
+			flashLight(2);
+			inputList.push(2);
+			checkList();
+		}
+	});
+	$(".bottom-right").click(function() {
+		if (on && clickable && inputListSmallEnough) {
+			// console.log("bottom right");
+			flashLight(3);
+			inputList.push(3);
+			checkList();
+		}
+	});
+
+	$("#start").click(function() {
+		if (clickable) {
+			if (!on) {
+				on = true;
+				// console.log("start");
+				$("#start").css("background-color", "#FFF39C");
+				clickable = false;
+				setTimeout(startGame, 500);
+			} else {
+				on = false;
+				// console.log("end");
+				$("#start").css("background-color", "#ffcc66");
+				endGame();
+				clickable = false;
+				setTimeout(makeClickable, 1000);
+			}
+		}
+	});
+	$("#strict").click(function() {
+		if (!strict) {
+			strict = true;
+			$("#strict").css("background-color", "#FFF39C");
+		} else {
+			strict = false;
+			$("#strict").css("background-color", "#cc0000");
+		}
+	});
+
+});
+</script>
+
+</head>
+
+<body onresize="center()">
+	<div class="center">
+		<div class="circle"></div>
+
+		<div class="base-wrapper">
+			<div class="row-top">
+		    <div class="top-left"></div>
+		    <div class="top-right"></div>
+		 	</div>
+		  <div class="row-bottom">
+		    <div class="bottom-left"></div>
+		    <div class="bottom-right"></div>
+		  </div>
+	  </div>
+
+	  <div class="inner">
+	  	<p><span id="title">Simon<span style="font-size: 18px">&reg;</span></p>
+			<div class="columns">
+			<p class="col-1"><span class="label">Start</span>  	
+				<div>
+					<p id="start" style="background-color:#ffcc66" class="button"></p> 
+				</div>
+				<br>
+			</p>
+			<p><span class="label">Count</span> <span class="count"><span id="tens">0</span> <span id="ones">0</span></span>  	
+			<br>
+			</p>
+			<p><span class="label">Strict</span> 
+				<div>
+					<p id="strict" style="background-color:#cc0000" class="button"></p> 
+				</div>
+				<br>
+			</p>
+			</div>
+	  </div>
+	</div>
+
+</body>
+</html>

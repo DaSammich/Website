@@ -1,0 +1,153 @@
+.center {
+
+}
+
+.columns {
+	-webkit-column-count: 3; /* Chrome, Safari, Opera */
+	-moz-column-count: 3; /* Firefox */
+	column-count: 3;
+	margin-right: 36px;
+	margin-left: 36px;
+	margin-top: -25px;
+}
+
+.label {
+	font-family: Fira Mono;
+	font-size: 18px;
+}
+
+.count {
+	display:inline-block;
+	background: pink;
+	border: 3px solid black;
+	border-radius: 15%;
+	font-size: 16px;
+	padding: 4px;
+  box-shadow: 5px 5px 5px #888888;
+	margin-top: 20px;
+	margin-left: 3px;
+	font-family: Fira Mono;
+}
+
+p.col-1 {
+	margin-top: 0px;
+}
+
+body {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	overflow: hidden;
+	background-image: url("http://bgfons.com/upload/wood%20_texture3193.jpg");
+	font-family: Secular One;
+}
+
+.button {
+	width: 25px;
+	height: 25px;
+	background-size: red;
+	border-radius: 50%;
+	border: 3px solid black;
+	margin: auto;
+  box-shadow: 6px 6px 8px #666;
+  cursor: pointer;
+}
+
+#title {
+	margin-top: 38px;
+	display: block;
+	font-weight: bold;
+	font-size: 3rem;
+}
+
+.base-wrapper {
+	position: fixed;
+	margin-top: -460px;
+	margin-left: 12px;
+}
+
+.inner {
+	background-color: #fff;
+	width: 250px;
+	height: 250px;
+	border-radius: 50%;
+	display: inline-block;
+	text-align: center;
+	border: 15px solid black;
+	position: fixed;
+	margin-top: -376px;
+	margin-left: 95px;
+}
+
+.circle {
+	width: 472px;
+	height: 472px;
+	background-color: black;
+	border-radius: 50%;
+  box-shadow: 8px 8px 8px #555;
+}
+
+.row-top {
+
+}
+
+.row-bottom {
+	margin-top: -.6rem;
+}
+
+.top-left {
+	background-color: #cccc00;
+	width: 200px;
+	height: 200px;
+	border-radius: 100% 0px 0px 0px;
+	display: inline-block;
+	border: 12px solid black;
+	cursor: pointer;
+}
+
+.top-right {
+	background-color: #cc0000;
+	width: 200px;
+	height: 200px;
+	border-radius: 0px 100% 0px 0px;
+	display: inline-block;
+	margin-left: -.3rem;
+	border: 12px solid black;
+	cursor: pointer;
+}
+
+.bottom-left {
+	background-color: #0000cc;
+	width: 200px;
+	height: 200px;
+	border-radius: 0px 0px 0px 100%;
+	display: inline-block;
+	border: 12px solid black;
+	cursor: pointer;
+}
+
+.bottom-right {
+	background-color: #339933;
+	width: 200px;
+	height: 200px;
+	border-radius: 0px 0px 100% 0px;
+	display: inline-block;
+	margin-left: -.3rem;
+	border: 12px solid black;
+	cursor: pointer;
+}
+
+/*.bottom-right:hover {
+	background-color: #40bf40;
+}
+
+.bottom-left:hover {
+	background-color: #0000ff;
+}
+
+.top-right:hover {
+	background-color: #ff0000; 
+}
+
+.top-left:hover {
+	background-color: #ffff00; 
+}*/

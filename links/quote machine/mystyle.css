@@ -1,0 +1,57 @@
+h1 {
+	color: blue;
+}
+
+.text-center {
+	text-align: center;
+}
+
+img {
+	position: relative;
+}
+
+#quote {
+	position: absolute;
+	top: 300px;
+	left: 500px;
+	width: 50%;
+}
+
+#change-quote {
+	position: absolute;
+	top: 550px;
+	left: 60%;
+}
+
+#twitter-button {
+	position: absolute;
+	top: 600px;
+	left: 40% ;
+  font-family: helvetica;
+  /*background-image: "1461728192_social_style_2_twiter.png"*/
+}
+
+body {
+	background-color: gray !important;
+}
+
+
+blockquote {
+  /*background: #f9f9f9;*/
+  border: none !important;
+  margin: 1.5em 10px 2.0em;
+  padding: 30px !important;
+  border-radius: 20px;
+  font-family: georgia;
+  font-size: 25px !important;
+}
+
+blockquote:before {
+  color: #ccc;
+  content: "\201C";
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>	
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="weather_style.css">
+
+<script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
+
+<!-- Load the weather api as the document is ready -->
+ <script>
+
+ 	// make a global var of all the possible bg's 
+ 	bgs = ['url(http://i.imgur.com/lQ0JR6s.jpg)','url(http://i.imgur.com/bqavUXI.jpg)','url(http://i.imgur.com/tpgCLYt.png)','url(http://i.imgur.com/51uLEFc.png)','url(http://i.imgur.com/Z4LVSuc.jpg)','url(http://i.imgur.com/LF70Zh0.jpg)','url(http://i.imgur.com/C5JA1kO.jpg)','url(http://i.imgur.com/EnYTlFe.jpg)','url(http://i.imgur.com/jEiuA86.jpg)','url(http://i.imgur.com/4vXW95m.jpg)','url(http://i.imgur.com/ReXwjDm.jpg)','url(http://i.imgur.com/cFBmCrc.jpg)','url(http://i.imgur.com/9ps5KxZ.jpg)'];
+
+
+ 	// get the icon string, i.e. '01d' from weather map api
+ 	function getIconStr(icon) {
+ 		var result;
+		switch (icon) {
+		case "01d":
+			result = "clear-day";
+			break;
+		case "01n":
+			result = "clear-night";
+			break;
+		case "02d":
+			result = "partly-cloudy-day";
+			break;
+		case "02n":
+			result = "partly-cloudy-night";
+			break;
+		case "03d":
+		case "03n":
+		case "04d":
+		case "04n":
+			result = "cloudy";
+			break;
+		case "09d":
+		case "09n":
+		case "10d":
+		case "10n":
+			result = "rain";
+			break;
+		case "11d":
+		case "11n":
+			result = "sleet";
+			break;
+		case "13d":
+		case "13n":
+			result = "snow";
+			break;
+		case "50d":
+		case "50n":
+			result = "fog";
+			break;
+	 	}
+		return result;
+ 	}
+
+	// load the skycons
+	function loadSkycons(icontype) {
+	 	var skycons = new Skycons({'color' : 'black'});
+	 	skycons.set('bigO', 'clear-day');
+	 	skycons.set('big-icon', icontype);
+	 	skycons.play();
+	 }
+
+  // get the icon type and set the background
+  function getBackground(description) {
+    switch (description) {
+      case "01d":
+        $("body").css({"background-image" : "url(http://i.imgur.com/lQ0JR6s.jpg)"});
+        break;
+      case "01n":
+        $("body").css({"background-image" : "url(http://i.imgur.com/bqavUXI.jpg)"});
+        break;
+      case "02d":
+        $("body").css({"background-image" : "url(http://i.imgur.com/tpgCLYt.png)"});
+        break;
+      case "02n":
+        $("body").css({"background-image" : "url(http://i.imgur.com/51uLEFc.png)"});
+        break;
+      case "03d":
+        $("body").css({"background-image" : "url(http://i.imgur.com/EnYTlFe.jpg)"});
+        break;
+      case "03n":
+        $("body").css({"background-image" : "url(http://i.imgur.com/jEiuA86.jpg)"});
+        break;
+      case "04d":
+        $("body").css({"background-image" : "url(http://i.imgur.com/EnYTlFe.jpg)"});
+        break;
+      case "04n":
+        $("body").css({"background-image" : "url(http://i.imgur.com/jEiuA86.jpg)"});
+        break;
+      case "09d":
+      case "09n":
+        $("body").css({"background-image" : "url(http://i.imgur.com/4vXW95m.jpg)"});
+        break;
+      case "10d":
+      case "10n":
+        $("body").css({"background-image" : "url(http://i.imgur.com/C5JA1kO.jpg)"});
+        break;
+      case "11d":
+      case "11n":
+        $("body").css({"background-image" : "url(http://i.imgur.com/9ps5KxZ.jpg)"});
+        break;
+      case "13d":
+        $("body").css({"background-image" : "url(http://i.imgur.com/ReXwjDm.jpg)"});
+        break;
+      case "13n":
+        $("body").css({"background-image" : "url(http://i.imgur.com/cFBmCrc.jpg)"});
+        break;
+      case "50d":
+        $("body").css({"background-image" : "url(http://i.imgur.com/Z4LVSuc.jpg)"});
+        break;
+      case "50n":
+        $("body").css({"background-image" : "url(http://i.imgur.com/LF70Zh0.jpg)"});
+        break;
+    }
+  } 
+
+  // jquery main
+ $(document).ready(function() {
+
+ 		fareheit = 0;			// globally keep track of the json temp call
+ 		celcius = 0;
+
+ 		// calling getCity()
+ 		var myCity = getCity(getTemp);
+
+ 		// api call to weathermap
+		function getTemp(city) {
+			$.getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=json&units=imperial&appid=73fd5efc5de6b018126103278dce1e81", function(json) {
+				if (json != "Nothing found.") {
+					var main = json.main;
+					$("#tempNum").html(Math.round(main.temp));
+					$("#description").html(json.weather[0].description);
+					$("#wind").html("winds " + json.wind.speed + " mph");
+					$("#humidity").html("humidity " + main.humidity + " %");
+					fareheit = Math.round(main.temp);
+					celcius = Math.round((fareheit - 32)/1.8);
+
+					// display the correct icon
+					var icon = json.weather[0].icon;
+					var iconStr = getIconStr(icon);
+					loadSkycons(iconStr);
+
+          // use the icon to get the background
+          getBackground(icon);
+
+				} else {
+					console.log("Sorry couldn't find it");
+				}
+			});
+		}
+
+	// get the city
+ 	function getCity(callback) {
+ 		// api call to geo id
+ 		var result = $.getJSON("https://geoip-db.com/json/geoip.php?jsonp=?", function(json) {
+			if (json != "Nothing found.") {
+				// console.log(json);
+				$("#city").html(json.city + ", " + json.country_name);
+				callback(json.city); 
+			} else {
+				console.log("Sorry couldn't find it");
+			}
+		});
+ 	}
+
+	// Listen for the event(s)
+	$("#newButton").click(function() {
+
+		var myTemp = $("#temp2").html();			// string 81 F
+		var str = "";
+		var num = parseInt(myTemp.split(" ")[0]);		// int of temp
+
+		var array = myTemp.split(" ");
+
+		if (myTemp.indexOf('F') !== -1) {
+			$("#newButton").html("&degC");
+			$("#tempNum").html(celcius);
+		} else if (myTemp.indexOf('C') !== -1) {
+
+			$("#newButton").html("&degF");
+			$("#tempNum").html(fareheit);
+		}
+	});
+
+	// listen to change the bg
+	$("#change-bg").click(function() {
+		var x = (Math.floor(Math.random() * 13));
+    $("body").css({"background-image" : bgs[x]});
+	});
+
+});
+ </script>
+
+</head>
+
+<body>
+<div class="container">
+	<br>
+  <div class="child">
+	<div class="text-center">
+		<h1>Free C<canvas id="bigO" class="clear-day" width="45" height="45"></canvas>de Camp</h1>
+		<h1>Weather App!</h1>
+  </div>
+  <br><br><br>
+  <div class="row">
+    <div class="col col-lg-3 col-mg-3 col-sm-3 col-xs-12"></div>
+    <div id="text" class="col col-lg-3 col-mg-3 col-sm-3 col-xs-12">	
+      <div class="text-center">
+        <p id="city"></p>
+        <p id="description"></p>
+        <p id="wind">wind</p>
+        <p id="humidity">humidity</p>
+        <p id="temp2"><span id="tempNum"></span><button id="newButton">&deg;F</button></p>
+      </div>
+    </div>
+    <div class="col col-lg-3 col-mg-3 col-sm-3 col-xs-12">
+      <canvas id="big-icon" class="clear-day" width="256" height="256">
+      </canvas>
+    </div>
+    <div class="col col-lg-3 col-mg-3 col-sm-3 col-xs-12"></div>
+  </div>
+  <div class="text-center">
+		<button type="button" id="change-bg" class="btn btn-primary btn-lg">Change Background</button>
+		<br><br>
+		<p id="author">Created by <a href="http://codepen.io/samsonchua/pen/zqzPWz" target="_blank">Samson Chua</a> using <a href="http://openweathermap.org/" target="_blank">OpenWeatherMap</a> and <a href="https://darkskyapp.github.io/skycons/" target="_blank">Skycons</a></p>
+  </div>
+  </div>
+</div>
+
+</body>
+</html>
